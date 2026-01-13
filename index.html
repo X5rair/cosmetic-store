@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dudeshape</title>
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#home">
+        <span class="brand-name">Dudeshape</span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Главная навигация">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#services">About us</a></li>
+          <li><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+
+
+
+        <button class="btn btn-ghost" id="loginBtn">Войти</button>
+
+        <div class="avatar" title="Профиль" tabindex="0" id="avatarBtn" aria-haspopup="true" aria-expanded="false">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><circle cx='16' cy='12' r='6' fill='%23e0e0e0'/><rect y='20' width='32' height='10' rx='3' fill='%23e0e0e0'/></svg>" alt="Аватар">
+          <div class="avatar-menu" id="avatarMenu" role="menu" aria-hidden="true">
+            <a href="#profile" role="menuitem">Профиль</a>
+            <a href="#settings" role="menuitem">Настройки</a>
+            <button type="button" role="menuitem" id="logoutBtn">Выйти</button>
+          </div>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Открыть меню" aria-controls="mainNav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+<div class="cart" id="cartBtn" title="Корзина">
+  🛒
+  <span id="cartCount">0</span>
+  <div class="cart-menu" id="cartMenu">
+    <ul id="cartList">
+    </ul>
+  </div>
+</div>
+  </header>
+
+<main id="home" style="padding:2rem;">
+    <section class="content">
+        <div class="content-container">
+            <div class="text">
+        <h1>Get Your Best Cosmetic Products Here</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum eligendi voluptatem laborum mollitia, accusamus earum aut ab illo cumque, explicabo et animi consequatur. Magnam non ut tempore nisi a fugiat!</p>
+        <button class="btn btn-ghost">Shop Now</button>
+        </div>
+        <div class="image">
+            <img src='./img/759ae193a7ea30f075e243febc5e0be46e7b89b3 (1).jpg' alt='Cosmetic Products'>
+        </div>      
+        </div>
+    </section>
+</main>
+
+<section class="logo-row">
+    <img src="./img/Airbnb Logo.png" alt="Airbnb Logo">
+    <img src="img/Hubspot Logo.png" alt="Hubspot Logo">
+    <img src="./img/Google Logo.png" alt="Google Logo">
+    <img src="./img/Microsoft Logo.png" alt="Microsoft Logo">
+    <img src="./img/Walmart Logo.png" alt="Walmart Logo">
+    <img src="./img/FedEx Logo.png" alt="Fedex Logo">
+</section>
+
+<section class="two-columns" id="products">
+    <div class="column">
+        <img src="./img/12524f2c75e512d4e2798fef98cdc8a8e38bd336.jpg" alt="first pic">
+        <h3>Cosmetic products</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, illum quasi quae, dignissimos quaerat omnis expedita iusto accusantium dicta, nulla voluptatibus odit ut ab? Commodi libero numquam nulla officia! Sed!</p>
+        <div class="buttons">
+            <button class="btn btn-fill">Buy Now</button>
+            <button class="btn btn-ghost">Add To Cart</button>
+        </div>
+    </div>
+
+    <div class="column">
+        <img src="./img/29a2849343b10611c03b42497cfbf68a38eb2f79.png" alt="second pic">
+        <h3>Cosmetic products</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, illum quasi quae, dignissimos quaerat omnis expedita iusto accusantium dicta, nulla voluptatibus odit ut ab? Commodi libero numquam nulla officia! Sed!</p>
+        <div class="buttons">
+            <button class="btn btn-fill">Buy Now</button>
+            <button class="btn btn-ghost">Add To Cart</button>
+        </div>
+    </div>
+</section>
+  <script src="./js/script.js"></script>
+</body>
+</html>

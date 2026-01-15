@@ -321,6 +321,10 @@ body {
   margin-bottom: 20px;
 }
 
+.column-second p {
+  font-weight: 600;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
@@ -424,4 +428,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+.column {
+  width: 320px;
+}
+
+.simple-line {
+  border-top: 1px solid #797575;
+  margin: 20px 0;
 }

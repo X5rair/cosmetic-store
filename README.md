@@ -4,7 +4,7 @@ A clean, modern landing page for a cosmetic store with product cards and a mini 
 
 ## Highlights
 - Responsive hero and product sections
-- Add‑to‑cart interactions with a cart counter
+- Add‑to‑cart interactions with э a cart counter
 - Lightweight, dependency‑free frontend
 - Organized structure for easy edits
 

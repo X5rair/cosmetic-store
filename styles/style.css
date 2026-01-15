@@ -27,6 +27,7 @@ body {
 }
 
 .container {
+
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
@@ -85,13 +86,16 @@ body {
 .btn {
   padding: 8px 12px;
   border-radius: var(--radius);
-  border: 0;
+  border: 1px solid #402F2C;
   cursor: pointer;
   font-weight: 600;
+  background: #402F2C;
+  color: #fff;
 }
 .btn-ghost {
-  background: transparent;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #402F2C;
+  border: 1px solid #402F2C;
+  color: #fff;
 }
 
 .avatar {
@@ -189,11 +193,17 @@ body {
 .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 .avatar-menu.open { display: flex; }
 
+main#home {
+    padding: 0;
+}
+
 .content {
+    background-color: lightcyan;
     padding: 80px 20px;
 }
 
 .content-container {
+    
     max-width: 1100px;
     margin:  auto;
     display: flex;
@@ -222,7 +232,7 @@ body {
 .btn-ghost {
     background-color: #402F2C;
     color: #ffffff;
-    border: 10px solid #402F2C(15, 23, 42, 0.06);
+    border: 1px solid #402F2C;
     padding: 12px 20px;
     font-size: 16px;
 }
@@ -236,6 +246,7 @@ body {
 .image img {
     width: 100%;
     max-width: 796px;
+    height: auto;
     border-radius: 12px;
     box-shadow: var(--shadow);
 }
@@ -248,7 +259,7 @@ body {
 
     .image {
         justify-content: center;
-        margin-top: 138px;
+        margin-top: 24px;
     }
 
     .text h1 {
@@ -336,6 +347,9 @@ body {
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+  background: #402F2C;
+  color: #fff;
+  border: 1px solid #402F2C;
 }
 
 .btn-fill {
@@ -344,9 +358,9 @@ body {
 }
 
 .btn-ghost {
-  background: transparent;
-  color: #402F2C;
-  border: 1px solid #685A5275;
+  background: #402F2C;
+  color: #fff;
+  border: 1px solid #402F2C;
 }
 
 

@@ -32,3 +32,4 @@ addToCartButtons.forEach(function (btn) {
         renderCart();
     });
 });
+ 

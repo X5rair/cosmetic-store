@@ -33,3 +33,4 @@ addToCartButtons.forEach(function (btn) {
     });
 });
  
+

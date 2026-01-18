@@ -452,3 +452,8 @@ html {
   border-top: 1px solid #797575;
   margin: 20px 0;
 }
+
+.modal {
+  position: fixed;
+  
+}

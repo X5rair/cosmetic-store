@@ -504,3 +504,14 @@ html {
   border: 1px solid #ddd;
   margin-top: 6px;
 }
+
+.modal__enter {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}

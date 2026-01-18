@@ -10,7 +10,7 @@ function renderCart() {
     cartList.innerHTML = '';
     cartItems.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `<img src="${item.imgSrc}" alt="${item.name}" width="40"><span>${item.name}</span>`;
+        li.innerHTML = `<img src="${item.imgSrc}" alt="${item.name}" width="40"><span>${item.name}</span><span>$${item.price}.00</span>`;
         cartList.appendChild(li);
     });
     const cartCount = document.getElementById('cartCount');
@@ -28,11 +28,12 @@ allToCarrtButtons.forEach((btn) => {
             return;
         const img = column.querySelector('img');
         const name = column.querySelector('h3')?.textContent || 'Товар';
-        const price = 0;
+        const priceEl = column.querySelector('.price');
+        const price = priceEl.dataset.price || priceEl?.textContent || "0";
         const item = {
             name,
             imgSrc: img.src,
-            price
+            price: parseFloat(price)
         };
         cartItems.push(item);
         renderCart();

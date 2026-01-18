@@ -1,6 +1,6 @@
-const cartBtn = document.getElementById('cart-btn') as HTMLElement;
-const cartMenu = document.getElementById('cartmenu') as HTMLElement;
-const cartList = document.getElementById('cartlist') as HTMLElement;
+const cartBtn = document.getElementById('cartBtn');
+const cartMenu = document.getElementById('cartMenu');
+const cartList = document.getElementById('cartList');
 const allToCarrtButtons = document.querySelectorAll<HTMLButtonElement>('.btn-ghost');
 
 interface CartItem {
@@ -11,6 +11,7 @@ interface CartItem {
 
 const cartItems: CartItem[] = [];
 function renderCart() {
+  if (!cartList) return;
   cartList.innerHTML = '';
   cartItems.forEach(item => {
     const li = document.createElement('li');
@@ -18,12 +19,12 @@ function renderCart() {
     cartList.appendChild(li);
   });
 
-  const cartCount = document.getElementById('cart-count') as HTMLElement;
-  cartCount.textContent = cartItems.length.toString();
+  const cartCount = document.getElementById('cartCount');
+  if (cartCount) cartCount.textContent = cartItems.length.toString();
 }
 
-cartBtn.addEventListener('click', () => {
-  cartMenu.classList.toggle('open');
+cartBtn?.addEventListener('click', () => {
+  cartMenu?.classList.toggle('open');
 });
 
 allToCarrtButtons.forEach((btn: HTMLButtonElement) => {
@@ -46,17 +47,27 @@ allToCarrtButtons.forEach((btn: HTMLButtonElement) => {
   });
 });
 
-const loginBtn = document.getElementById('loginbtn');
-const loginModal = document.getElementById('loginmodal');
-const logicCloseBtn = document.getElementById('modalCloseBtn');
-const loginDrop = document.getElementById('modal__backdrop');
+const loginBtn = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const loginCloseBtn = document.getElementById('modalCloseBtn');
+const loginBackdrop = document.getElementById('loginBackdrop');
 
 function openLoginModal() {
   if (!loginModal) return;
   loginModal.classList.add('open');
 }
 function closeLoginModal() {
-  if (!loginModal)return;
-  loginModal.classList.remove('remove')
+  if (!loginModal) return;
+  loginModal.classList.remove('open');
 }
 
+loginBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  openLoginModal();
+});
+
+loginCloseBtn?.addEventListener('click', closeLoginModal);
+loginBackdrop?.addEventListener('click', closeLoginModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLoginModal();
+});

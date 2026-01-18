@@ -1,36 +1,65 @@
-var cartBtn = document.getElementById('cartBtn');
-var cartMenu = document.getElementById('cartMenu');
-var cartList = document.getElementById('cartList');
-var addToCartButtons = document.querySelectorAll('.btn-ghost');
-var cartItems = [];
+"use strict";
+const cartBtn = document.getElementById('cartBtn');
+const cartMenu = document.getElementById('cartMenu');
+const cartList = document.getElementById('cartList');
+const allToCarrtButtons = document.querySelectorAll('.btn-ghost');
+const cartItems = [];
 function renderCart() {
+    if (!cartList)
+        return;
     cartList.innerHTML = '';
-    cartItems.forEach(function (item) {
-        var li = document.createElement('li');
-        li.innerHTML = "<img src=\"".concat(item.imgSrc, "\" alt=\"").concat(item.name, "\" width=\"40\"><span>").concat(item.name, "</span>");
+    cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<img src="${item.imgSrc}" alt="${item.name}" width="40"><span>${item.name}</span>`;
         cartList.appendChild(li);
     });
-    var cartCount = document.getElementById('cartCount');
-    cartCount.textContent = cartItems.length.toString();
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount)
+        cartCount.textContent = cartItems.length.toString();
 }
-cartBtn.addEventListener('click', function () {
-    cartMenu.classList.toggle('open');
+cartBtn?.addEventListener('click', () => {
+    cartMenu?.classList.toggle('open');
 });
-addToCartButtons.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-        var _a;
-        var column = e.target.closest('.column');
+allToCarrtButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        const target = e.target;
+        const column = target.closest('.column');
         if (!column)
             return;
-        var img = column.querySelector('img');
-        var name = ((_a = column.querySelector('h3')) === null || _a === void 0 ? void 0 : _a.textContent) || 'Товар';
-        var item = {
-            name: name,
-            imgSrc: img.src
+        const img = column.querySelector('img');
+        const name = column.querySelector('h3')?.textContent || 'Товар';
+        const price = 0;
+        const item = {
+            name,
+            imgSrc: img.src,
+            price
         };
         cartItems.push(item);
         renderCart();
     });
 });
- 
-
+const loginBtn = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const loginCloseBtn = document.getElementById('modalCloseBtn');
+const loginBackdrop = document.getElementById('loginBackdrop');
+function openLoginModal() {
+    if (!loginModal)
+        return;
+    loginModal.classList.add('open');
+}
+function closeLoginModal() {
+    if (!loginModal)
+        return;
+    loginModal.classList.remove('open');
+}
+loginBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openLoginModal();
+});
+loginCloseBtn?.addEventListener('click', closeLoginModal);
+loginBackdrop?.addEventListener('click', closeLoginModal);
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape')
+        closeLoginModal();
+});
+//# sourceMappingURL=script.js.map

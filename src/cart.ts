@@ -45,3 +45,18 @@ allToCarrtButtons.forEach((btn: HTMLButtonElement) => {
     renderCart();
   });
 });
+
+const loginBtn = document.getElementById('loginbtn');
+const loginModal = document.getElementById('loginmodal');
+const logicCloseBtn = document.getElementById('modalCloseBtn');
+const loginDrop = document.getElementById('modal__backdrop');
+
+function openLoginModal() {
+  if (!loginModal) return;
+  loginModal.classList.add('open');
+}
+function closeLoginModal() {
+  if (!loginModal)return;
+  loginModal.classList.remove('remove')
+}
+

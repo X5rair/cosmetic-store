@@ -455,5 +455,56 @@ html {
 
 .modal {
   position: fixed;
-  
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 1000;
+}
+
+.modal.open {
+  display: grid;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 24px;
+  width: min(420px, 92vw);
+  border-radius: 12px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal__form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.modal__form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 6px;
 }

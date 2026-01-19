@@ -80,6 +80,11 @@ loginForm?.addEventListener('submit', (e) => {
     }
     closeLoginModal();
 });
+const logOutBtn = document.createElement('button');
+logOutBtn.textContent = 'Logout';
+logOutBtn.className = 'btn btn-ghost';
+logOutBtn.hidden = true;
+userNameLabel?.after(logOutBtn);
 const savedName = localStorage.getItem('username');
 if (savedName) {
     if (loginBtn)
@@ -88,5 +93,14 @@ if (savedName) {
         userNameLabel.textContent = savedName;
         userNameLabel.hidden = false;
     }
+    logOutBtn.hidden = false;
 }
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem('username');
+    logOutBtn.hidden = true;
+    if (loginBtn)
+        loginBtn.hidden = false;
+    userNameLabel.textContent = '';
+    userNameLabel.hidden = true;
+});
 //# sourceMappingURL=script.js.map

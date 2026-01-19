@@ -18,5 +18,6 @@ declare function closeLoginModal(): void;
 declare const loginForm: HTMLFormElement;
 declare const usernameInput: HTMLInputElement;
 declare const userNameLabel: HTMLSpanElement;
+declare const logOutBtn: HTMLButtonElement;
 declare const savedName: string | null;
 //# sourceMappingURL=script.d.ts.map

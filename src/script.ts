@@ -89,6 +89,7 @@ loginForm?.addEventListener('submit', (e) => {
     userNameLabel.textContent = name;
     userNameLabel.hidden = false;
   }
+  logOutBtn.hidden = false;
   closeLoginModal();
 });
 

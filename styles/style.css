@@ -172,7 +172,11 @@ body {
     background: white;
     padding: 12px;
     border-bottom: 1px solid rgba(15, 23, 42, 0.04);
-    display: none;
+    display: block;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
   .main-nav ul {
     flex-direction: column;
@@ -187,7 +191,11 @@ body {
   }
 }
 
-.main-nav.open { display: block; }
+.main-nav.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -535,5 +543,4 @@ html {
   font-weight: 600;
   cursor: pointer;
 }
-
 

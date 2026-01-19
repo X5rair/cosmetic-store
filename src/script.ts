@@ -13,15 +13,19 @@ const cartItems: CartItem[] = [];
 function renderCart() {
   if (!cartList) return;
   cartList.innerHTML = '';
+  let total = 0;
   cartItems.forEach(item => {
     const li = document.createElement('li');
     li.innerHTML = `<img src="${item.imgSrc}" alt="${item.name}" width="40"><span>${item.name}</span><span>$${item.price}.00</span>`;
 
     cartList.appendChild(li);
+    total += item.price;
   });
 
   const cartCount = document.getElementById('cartCount');
   if (cartCount) cartCount.textContent = cartItems.length.toString();
+  const cartTotal = document.getElementById('cartTotal');
+  if (cartTotal) cartTotal.textContent = `$${total.toFixed(2)}`;
 }
 
 cartBtn?.addEventListener('click', () => {

@@ -3,6 +3,8 @@ const cartBtn = document.getElementById('cartBtn');
 const cartMenu = document.getElementById('cartMenu');
 const cartList = document.getElementById('cartList');
 const allToCarrtButtons = document.querySelectorAll('.btn-ghost');
+const hamburger = document.getElementById('hamburger');
+const mainNav = document.getElementById('mainNav');
 const cartItems = [];
 function renderCart() {
     if (!cartList)
@@ -24,6 +26,12 @@ function renderCart() {
 }
 cartBtn?.addEventListener('click', () => {
     cartMenu?.classList.toggle('open');
+});
+hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mainNav?.classList.toggle('open');
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!expanded));
 });
 allToCarrtButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {

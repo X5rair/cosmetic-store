@@ -2,6 +2,8 @@ declare const cartBtn: HTMLElement | null;
 declare const cartMenu: HTMLElement | null;
 declare const cartList: HTMLElement | null;
 declare const allToCarrtButtons: NodeListOf<HTMLButtonElement>;
+declare const hamburger: HTMLElement | null;
+declare const mainNav: HTMLElement | null;
 interface CartItem {
     name: string;
     imgSrc: string;

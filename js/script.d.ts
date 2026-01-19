@@ -15,4 +15,8 @@ declare const loginCloseBtn: HTMLElement | null;
 declare const loginBackdrop: HTMLElement | null;
 declare function openLoginModal(): void;
 declare function closeLoginModal(): void;
+declare const loginForm: HTMLFormElement;
+declare const usernameInput: HTMLInputElement;
+declare const userNameLabel: HTMLSpanElement;
+declare const savedName: string | null;
 //# sourceMappingURL=script.d.ts.map

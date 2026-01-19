@@ -63,4 +63,30 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape')
         closeLoginModal();
 });
+const loginForm = document.getElementById('loginForm');
+const usernameInput = document.getElementById('usernameInput');
+const userNameLabel = document.getElementById('userNameLabel');
+loginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = usernameInput?.value.trim();
+    if (!name)
+        return;
+    localStorage.setItem('username', name);
+    if (loginBtn)
+        loginBtn.hidden = true;
+    if (userNameLabel) {
+        userNameLabel.textContent = name;
+        userNameLabel.hidden = false;
+    }
+    closeLoginModal();
+});
+const savedName = localStorage.getItem('username');
+if (savedName) {
+    if (loginBtn)
+        loginBtn.hidden = true;
+    if (userNameLabel) {
+        userNameLabel.textContent = savedName;
+        userNameLabel.hidden = false;
+    }
+}
 //# sourceMappingURL=script.js.map

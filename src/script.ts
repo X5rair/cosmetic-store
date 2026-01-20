@@ -20,10 +20,32 @@ function getCartStorageKey() {
   return username ? `cartItems_${username}` : 'cartItems_guest';
 };
 
+function setCartItems(items: CartItem[]) {
+  cartItems.length = 0;
+  cartItems.push(...items);
+}
 
+function loadCartFromStorage() {
+  const raw = localStorage.getItem(getCartStorageKey());
+  if (!raw) {
+    setCartItems([]);
+    return;
+  }
+  try {
+    const items: CartItem[] = JSON.parse(raw);
+    if (Array.isArray(items)) setCartItems(items);
+  } catch {
+    setCartItems([]);
+  }
+}
+
+function saveCartToStorage() {
+  localStorage.setItem(getCartStorageKey(), JSON.stringify(cartItems));
+}
 
 function renderCart() {
   if (!cartList) return;
+    saveCartToStorage();
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
   cartList.innerHTML = '';
   let total = 0;
@@ -102,6 +124,11 @@ document.addEventListener('keydown', (e) => {
 const loginForm = document.getElementById('loginForm') as HTMLFormElement;
 const usernameInput = document.getElementById('usernameInput') as HTMLInputElement;
 const userNameLabel = document.getElementById('userNameLabel') as HTMLSpanElement;
+const logOutBtn = document.createElement('button');
+logOutBtn.textContent = 'Logout';
+logOutBtn.className = 'btn btn-ghost';
+logOutBtn.hidden = true;
+userNameLabel?.after(logOutBtn);
 
 loginForm?.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -113,6 +140,9 @@ loginForm?.addEventListener('submit', (e) => {
     userNameLabel.textContent = name;
     userNameLabel.hidden = false;
   }
+  logOutBtn.hidden = false;
+  loadCartFromStorage();
+  renderCart();
   closeLoginModal();
 });
 
@@ -123,20 +153,17 @@ if (userNameLabel) {
   userNameLabel.textContent = savedName;
   userNameLabel.hidden = false;
 }
-}
-
-const logOutBtn = document.createElement('button');
-logOutBtn.textContent = 'Logout';
-logOutBtn.className = 'btn btn-ghost';
 logOutBtn.hidden = false;
-userNameLabel?.after(logOutBtn);
+loadCartFromStorage();
+renderCart();
+}
 
 logOutBtn.addEventListener('click', () => {
   localStorage.removeItem('username');
   logOutBtn.hidden = true;
   if (loginBtn) loginBtn.hidden = false;
-  if (!savedName) logOutBtn.hidden = true;
   userNameLabel!.textContent = '';
   userNameLabel!.hidden = true;
-  logOutBtn.hidden = false;
+  loadCartFromStorage();
+  renderCart();
 });

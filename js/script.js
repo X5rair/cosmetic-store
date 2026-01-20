@@ -3,35 +3,59 @@ const cartBtn = document.getElementById('cartBtn');
 const cartMenu = document.getElementById('cartMenu');
 const cartList = document.getElementById('cartList');
 const allToCarrtButtons = document.querySelectorAll('.add-to-cart');
-const hamburger = document.getElementById('hamburger');
-const mainNav = document.getElementById('mainNav');
 const cartItems = [];
+function getActiveUsername() {
+    return localStorage.getItem('username');
+}
+function getCartStorageKey() {
+    const username = getActiveUsername();
+    return username ? `cartItems_${username}` : 'cartItems_guest';
+}
+;
+function setCartItems(items) {
+    cartItems.length = 0;
+    cartItems.push(...items);
+}
+function loadCartFromStorage() {
+    const raw = localStorage.getItem(getCartStorageKey());
+    if (!raw) {
+        setCartItems([]);
+        return;
+    }
+    try {
+        const items = JSON.parse(raw);
+        if (Array.isArray(items))
+            setCartItems(items);
+    }
+    catch {
+        setCartItems([]);
+    }
+}
+function saveCartToStorage() {
+    localStorage.setItem(getCartStorageKey(), JSON.stringify(cartItems));
+}
 function renderCart() {
     if (!cartList)
         return;
+    saveCartToStorage();
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
     cartList.innerHTML = '';
     let total = 0;
     cartItems.forEach(item => {
+        total += item.price;
         const li = document.createElement('li');
         li.innerHTML = `<img src="${item.imgSrc}" alt="${item.name}" width="40"><span>${item.name}</span><span>$${item.price}.00</span>`;
         cartList.appendChild(li);
-        total += item.price;
     });
-    const cartCount = document.getElementById('cartCount');
-    if (cartCount)
-        cartCount.textContent = cartItems.length.toString();
     const cartTotal = document.getElementById('cart-total');
     if (cartTotal)
         cartTotal.textContent = total.toFixed(2);
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount)
+        cartCount.textContent = cartItems.length.toString();
 }
 cartBtn?.addEventListener('click', () => {
     cartMenu?.classList.toggle('open');
-});
-hamburger?.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mainNav?.classList.toggle('open');
-    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', String(!expanded));
 });
 allToCarrtButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -51,6 +75,11 @@ allToCarrtButtons.forEach((btn) => {
         cartItems.push(item);
         renderCart();
     });
+});
+const checkoutBtn = document.getElementById('checkoutBtn');
+checkoutBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Checkout is not implemented yet.');
 });
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
@@ -79,6 +108,11 @@ document.addEventListener('keydown', (e) => {
 const loginForm = document.getElementById('loginForm');
 const usernameInput = document.getElementById('usernameInput');
 const userNameLabel = document.getElementById('userNameLabel');
+const logOutBtn = document.createElement('button');
+logOutBtn.textContent = 'Logout';
+logOutBtn.className = 'btn btn-ghost';
+logOutBtn.hidden = true;
+userNameLabel?.after(logOutBtn);
 loginForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = usernameInput?.value.trim();
@@ -92,13 +126,10 @@ loginForm?.addEventListener('submit', (e) => {
         userNameLabel.hidden = false;
     }
     logOutBtn.hidden = false;
+    loadCartFromStorage();
+    renderCart();
     closeLoginModal();
 });
-const logOutBtn = document.createElement('button');
-logOutBtn.textContent = 'Logout';
-logOutBtn.className = 'btn btn-ghost';
-logOutBtn.hidden = true;
-userNameLabel?.after(logOutBtn);
 const savedName = localStorage.getItem('username');
 if (savedName) {
     if (loginBtn)
@@ -108,6 +139,8 @@ if (savedName) {
         userNameLabel.hidden = false;
     }
     logOutBtn.hidden = false;
+    loadCartFromStorage();
+    renderCart();
 }
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem('username');
@@ -116,5 +149,7 @@ logOutBtn.addEventListener('click', () => {
         loginBtn.hidden = false;
     userNameLabel.textContent = '';
     userNameLabel.hidden = true;
+    loadCartFromStorage();
+    renderCart();
 });
 //# sourceMappingURL=script.js.map

@@ -2,15 +2,19 @@ declare const cartBtn: HTMLElement | null;
 declare const cartMenu: HTMLElement | null;
 declare const cartList: HTMLElement | null;
 declare const allToCarrtButtons: NodeListOf<HTMLButtonElement>;
-declare const hamburger: HTMLElement | null;
-declare const mainNav: HTMLElement | null;
 interface CartItem {
     name: string;
     imgSrc: string;
     price: number;
 }
 declare const cartItems: CartItem[];
+declare function getActiveUsername(): string | null;
+declare function getCartStorageKey(): string;
+declare function setCartItems(items: CartItem[]): void;
+declare function loadCartFromStorage(): void;
+declare function saveCartToStorage(): void;
 declare function renderCart(): void;
+declare const checkoutBtn: HTMLElement | null;
 declare const loginBtn: HTMLElement | null;
 declare const loginModal: HTMLElement | null;
 declare const loginCloseBtn: HTMLElement | null;

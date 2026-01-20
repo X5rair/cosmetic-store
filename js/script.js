@@ -2,7 +2,7 @@
 const cartBtn = document.getElementById('cartBtn');
 const cartMenu = document.getElementById('cartMenu');
 const cartList = document.getElementById('cartList');
-const allToCarrtButtons = document.querySelectorAll('.btn-ghost');
+const allToCarrtButtons = document.querySelectorAll('.add-to-cart');
 const hamburger = document.getElementById('hamburger');
 const mainNav = document.getElementById('mainNav');
 const cartItems = [];
@@ -20,9 +20,9 @@ function renderCart() {
     const cartCount = document.getElementById('cartCount');
     if (cartCount)
         cartCount.textContent = cartItems.length.toString();
-    const cartTotal = document.getElementById('cartTotal');
+    const cartTotal = document.getElementById('cart-total');
     if (cartTotal)
-        cartTotal.textContent = `$${total.toFixed(2)}`;
+        cartTotal.textContent = total.toFixed(2);
 }
 cartBtn?.addEventListener('click', () => {
     cartMenu?.classList.toggle('open');

@@ -10,9 +10,21 @@ interface CartItem {
 }
 
 const cartItems: CartItem[] = [];
+
+function getActiveUsername() {
+  return localStorage.getItem('username');
+}
+
+function getCartStorageKey() {
+  const username = getActiveUsername();
+  return username ? `cartItems_${username}` : 'cartItems_guest';
+};
+
+
+
 function renderCart() {
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
   if (!cartList) return;
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
   cartList.innerHTML = '';
   let total = 0;
   cartItems.forEach(item => {

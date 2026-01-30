@@ -77,6 +77,7 @@ allToCarrtButtons.forEach((btn) => {
     });
 });
 const checkoutBtn = document.getElementById('checkoutBtn');
+а;
 checkoutBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     alert('Checkout is not implemented yet.');
@@ -142,16 +143,6 @@ if (savedName) {
     loadCartFromStorage();
     renderCart();
 }
-logOutBtn.addEventListener('click', () => {
-    localStorage.removeItem('username');
-    logOutBtn.hidden = true;
-    if (loginBtn)
-        loginBtn.hidden = false;
-    userNameLabel.textContent = '';
-    userNameLabel.hidden = true;
-    loadCartFromStorage();
-    renderCart();
-});
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem('username');
     logOutBtn.hidden = true;

@@ -553,3 +553,72 @@ html {
   font-weight: 600;
   cursor: pointer;
 }
+
+.faq-chat {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.faq-chat__toggle {
+  background: #402F2C;
+  color: #fff;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.faq-chat__panel {
+  width: 300px;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.faq-chat__header {
+  background: #111;
+  color: #fff;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.faq-chat__close {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.faq-chat__body {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.faq-chat__questions {
+  display: grid;
+  gap: 8px;
+}
+
+.faq-chat__questions button { 
+  text-align: left; 
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb; 
+  padding: 8px 10px;
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 14px; 
+}
+
+.faq-chat__questions button:hover { background: #e5e7eb; }
+.faq-chat__answer { font-size: 14px; color: #111; background: #fff7ed; border: 1px solid #fed7aa; padding: 10px; border-radius: 8px; min-height: 60px; }

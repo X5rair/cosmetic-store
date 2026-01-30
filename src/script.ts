@@ -89,7 +89,7 @@ allToCarrtButtons.forEach((btn: HTMLButtonElement) => {
   });
 });
 
-const checkoutBtn = document.getElementById('checkoutBtn');
+const checkoutBtn = document.getElementById('checkoutBtn');а
 checkoutBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   alert('Checkout is not implemented yet.');
@@ -167,3 +167,5 @@ logOutBtn.addEventListener('click', () => {
   loadCartFromStorage();
   renderCart();
 });
+
+

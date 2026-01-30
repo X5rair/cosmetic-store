@@ -152,4 +152,14 @@ logOutBtn.addEventListener('click', () => {
     loadCartFromStorage();
     renderCart();
 });
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem('username');
+    logOutBtn.hidden = true;
+    if (loginBtn)
+        loginBtn.hidden = false;
+    userNameLabel.textContent = '';
+    userNameLabel.hidden = true;
+    loadCartFromStorage();
+    renderCart();
+});
 //# sourceMappingURL=script.js.map

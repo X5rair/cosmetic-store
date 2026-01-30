@@ -26,4 +26,11 @@ declare const usernameInput: HTMLInputElement;
 declare const userNameLabel: HTMLSpanElement;
 declare const logOutBtn: HTMLButtonElement;
 declare const savedName: string | null;
+declare const faqData: {
+    q: string;
+    a: string;
+}[];
+declare const faqToggle: HTMLElement | null;
+declare const faqClose: HTMLElement | null;
+declare const faqPanel: HTMLElement | null;
 //# sourceMappingURL=script.d.ts.map

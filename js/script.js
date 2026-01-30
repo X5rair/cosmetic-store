@@ -77,7 +77,6 @@ allToCarrtButtons.forEach((btn) => {
     });
 });
 const checkoutBtn = document.getElementById('checkoutBtn');
-а;
 checkoutBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     alert('Checkout is not implemented yet.');
@@ -153,4 +152,11 @@ logOutBtn.addEventListener('click', () => {
     loadCartFromStorage();
     renderCart();
 });
+const faqData = [
+    { q: 'Какова продолжительность доставки?', a: 'Доставка обычно занимает 2–5 рабочих дней по городу и 5–10 дней по регионам.' },
+    { q: 'Какие способы оплаты вы принимаете?', a: 'Мы принимаем кредитные карты, дебетовые карты, PayPal и наличные при доставке.' },
+];
+const faqToggle = document.getElementById('faqChatToggle');
+const faqClose = document.getElementById('faqChatClose');
+const faqPanel = document.getElementById('faqChatPanel');
 //# sourceMappingURL=script.js.map

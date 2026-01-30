@@ -169,5 +169,12 @@ logOutBtn.addEventListener('click', () => {
 });
 
 const faqData = [
-  
-]
+    { q: 'Какова продолжительность доставки?', a: 'Доставка обычно занимает 2–5 рабочих дней по городу и 5–10 дней по регионам.' },
+    { q: 'Какие способы оплаты вы принимаете?', a: 'Мы принимаем кредитные карты, дебетовые карты, PayPal и наличные при доставке.' },
+
+
+];
+
+const faqToggle = document.getElementById('faqChatToggle');
+const faqClose = document.getElementById('faqChatClose');
+const faqPanel = document.getElementById('faqChatPanel');

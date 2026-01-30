@@ -192,3 +192,7 @@ function renderFaqButtons() {
   });
 }
 renderFaqButtons();
+faqToggle?.addEventListener('click', () => {
+  if (faqPanel) { faqPanel.hidden = !faqPanel.hidden; }
+  if (faqToggle && faqPanel) {faqToggle.setAttribute('aria-expanded', String(!faqPanel.hidden)); }
+});

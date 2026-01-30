@@ -191,8 +191,15 @@ function renderFaqButtons() {
     faqQuestions.appendChild(btn);
   });
 }
+
 renderFaqButtons();
+
 faqToggle?.addEventListener('click', () => {
-  if (faqPanel) { faqPanel.hidden = !faqPanel.hidden; }
-  if (faqToggle && faqPanel) {faqToggle.setAttribute('aria-expanded', String(!faqPanel.hidden)); }
+  if (faqPanel) { faqPanel.hidden = !faqPanel.hidden; } // скрыл панель 
+  if (faqToggle && faqPanel) {faqToggle.setAttribute('aria-expanded', String(!faqPanel.hidden)); } // меняю свойство атрибута aria-expended
+});
+
+faqClose?.addEventListener('click', () => {
+  if (faqPanel) { faqPanel.hidden = true; }
+  if (faqToggle) {faqToggle.setAttribute('aria-expanded', 'false'); } // тоже самое только false xdd
 });

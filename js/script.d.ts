@@ -33,4 +33,7 @@ declare const faqData: {
 declare const faqToggle: HTMLElement | null;
 declare const faqClose: HTMLElement | null;
 declare const faqPanel: HTMLElement | null;
+declare const faqQuestions: HTMLElement | null;
+declare const faqAnswer: HTMLElement | null;
+declare function renderFaqButtons(): void;
 //# sourceMappingURL=script.d.ts.map

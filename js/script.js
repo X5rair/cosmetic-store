@@ -159,4 +159,19 @@ const faqData = [
 const faqToggle = document.getElementById('faqChatToggle');
 const faqClose = document.getElementById('faqChatClose');
 const faqPanel = document.getElementById('faqChatPanel');
+const faqQuestions = document.getElementById('faqChatQuestions');
+const faqAnswer = document.getElementById('faqChatAnswer');
+function renderFaqButtons() {
+    if (!faqQuestions)
+        return;
+    faqQuestions.innerHTML = '';
+    faqData.forEach((item) => {
+        const btn = document.createElement('button');
+        btn.textContent = item.q;
+        btn.addEventListener('click', () => { if (faqAnswer)
+            faqAnswer.textContent = item.a; });
+        faqQuestions.appendChild(btn);
+    });
+}
+renderFaqButtons();
 //# sourceMappingURL=script.js.map

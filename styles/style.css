@@ -662,7 +662,20 @@ html {
   text-align: right;
 }
 
-.faq-launch { position: fixed; right: 20px; bottom:20px; z-index: 999;}
+.faq-launch {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #402F2C;
+  color: #fff;
+  border: 1px solid #402F2C;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .faq-modal { position: fixed; inset: 0; z-index: 1000; }
 .faq-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); opacity: 0; transition: opacity .25s ease; }
 .faq-modal__panel {

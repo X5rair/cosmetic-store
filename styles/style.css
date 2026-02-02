@@ -662,3 +662,20 @@ html {
   text-align: right;
 }
 
+.faq-launch { position: fixed; right: 20px; bottom:20px; z-index: 999;}
+.faq-modal { position: fixed; inset: 0; z-index: 1000; }
+.faq-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); opacity: 0; transition: opacity .25s ease; }
+.faq-modal__panel {
+  position: absolute; right: 20px; bottom: 20px; width: 340px; max-height: 80vh;
+  background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.2);
+  transform: translateY(20px) scale(.98); opacity: 0; transition: transform .25s ease, opacity .25s ease;
+}
+
+.faq-modal.open .faq-modal__backdrop {
+  opacity: 1;
+}
+
+.faq-modal.open .faq-modal__panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}

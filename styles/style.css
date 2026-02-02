@@ -622,3 +622,42 @@ html {
 
 .faq-chat__questions button:hover { background: #e5e7eb; }
 .faq-chat__answer { font-size: 14px; color: #111; background: #fff7ed; border: 1px solid #fed7aa; padding: 10px; border-radius: 8px; min-height: 60px; }
+
+.chat-feed {
+  max-height: 260px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-msg {
+  display: flex;
+}
+
+.chat-msg--user {
+  justify-content: flex-end;
+}
+
+.chat-msg--bot {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f3f4f6;
+}
+
+.chat-msg--user .chat-bubble {
+  background: #402F2C;
+  color: #fff;
+}
+
+.chat-time {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-top: 5px;
+  text-align: right;
+}

@@ -203,7 +203,7 @@ faqClose?.addEventListener('click', () => {
 });
 
 
-type ChatRole = 'user' | 'assistant';
+type ChatRole = 'user' | 'bot';
 
 type ChatMessage = {
   role: ChatRole;
@@ -238,3 +238,28 @@ faqAnswer!.innerHTML = `<div class="chat-feed">${messageHtml}${typingHtml}</div>
 const feed = faqAnswer?.querySelector('.chat-feed');
 if (feed) feed.scrollTop = feed.scrollHeight;
 }
+
+function botReply(answer: string) {
+  isBotTyping = true;
+  renderMessages();
+
+  setTimeout(() => {
+    isBotTyping = false;
+    addMessage('bot', answer);
+    renderMessages();
+  }, 900);
+}
+
+
+faqData.forEach((faq) => {
+  const btn = document.createElement('button');
+  btn.textContent = faq.q;
+
+btn.addEventListener('click', () => { //обработчик 
+  addMessage('user', faq.q); // вопрос пользователя
+  renderMessages(); //рендер чи загрузка сообщений
+  botReply(faq.a); 
+});
+
+faqQuestions?.appendChild(btn);
+});

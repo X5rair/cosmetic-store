@@ -211,4 +211,23 @@ function renderMessages() {
     if (feed)
         feed.scrollTop = feed.scrollHeight;
 }
+function botReply(answer) {
+    isBotTyping = true;
+    renderMessages();
+    setTimeout(() => {
+        isBotTyping = false;
+        addMessage('bot', answer);
+        renderMessages();
+    }, 900);
+}
+faqData.forEach((faq) => {
+    const btn = document.createElement('button');
+    btn.textContent = faq.q;
+    btn.addEventListener('click', () => {
+        addMessage('user', faq.q); // вопрос пользователя
+        renderMessages(); //рендер чи загрузка сообщений
+        botReply(faq.a);
+    });
+    faqQuestions?.appendChild(btn);
+});
 //# sourceMappingURL=script.js.map

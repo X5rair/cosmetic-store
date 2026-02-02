@@ -36,7 +36,7 @@ declare const faqPanel: HTMLElement | null;
 declare const faqQuestions: HTMLElement | null;
 declare const faqAnswer: HTMLElement | null;
 declare function renderFaqButtons(): void;
-type ChatRole = 'user' | 'assistant';
+type ChatRole = 'user' | 'bot';
 type ChatMessage = {
     role: ChatRole;
     text: string;
@@ -46,4 +46,5 @@ declare let chatMessages: ChatMessage[];
 declare let isBotTyping: boolean;
 declare function addMessage(role: ChatRole, text: string): void;
 declare function renderMessages(): void;
+declare function botReply(answer: string): void;
 //# sourceMappingURL=script.d.ts.map

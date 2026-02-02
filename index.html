@@ -234,10 +234,15 @@
   </div>
 </div>
 
-<div class="faq-chat" id="faqChat">
-  <button class="faq-chat__toggle" id="faqChatToggle" aria-expanded="false" aria-controls="faqChatPanel">Chat with operator</button>
-  <div class="faq-chat__panel" id="faqChatPanel" hidden>
-    <div class="faq-chat__header"><span>(FAQ)</span><button class="faq-chat__close" id="faqChatClose" aria-label="Close">x</button></div>
+<button class="faq-launch" id="faqChatToggle">Chat with operator</button>
+
+<div class="faq-modal" id="faqModal" hidden>
+  <div class="faq-modal__backdrop" id="faqModalBackdrop"></div>
+  <div class="faq-modal__panel" id="faqChatPanel">
+    <div class="faq-chat__header">
+      <span>Operator (FAQ)</span>
+      <button class="faq-chat__close" id="faqChatClose" aria-label="Close chat">×</button>
+    </div>
     <div class="faq-chat__body">
       <div class="faq-chat__questions" id="faqChatQuestions"></div>
       <div class="faq-chat__answer" id="faqChatAnswer"></div>

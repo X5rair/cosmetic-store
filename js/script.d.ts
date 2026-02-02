@@ -47,4 +47,8 @@ declare let isBotTyping: boolean;
 declare function addMessage(role: ChatRole, text: string): void;
 declare function renderMessages(): void;
 declare function botReply(answer: string): void;
+declare const faqModal: HTMLElement | null;
+declare const faqBackdrop: HTMLElement | null;
+declare function openFaqModal(): void;
+declare function closeFaqModal(): void;
 //# sourceMappingURL=script.d.ts.map

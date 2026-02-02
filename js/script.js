@@ -230,4 +230,23 @@ faqData.forEach((faq) => {
     });
     faqQuestions?.appendChild(btn);
 });
+addMessage('bot', 'Здравствуйте! Как я могу помочь вам сегодня?');
+renderMessages();
+const faqModal = document.getElementById('faqModal');
+const faqBackdrop = document.getElementById('faqModalBackdrop');
+function openFaqModal() {
+    if (!faqModal)
+        return;
+    faqModal.hidden = false;
+    requestAnimationFrame(() => faqModal.classList.add('open'));
+}
+function closeFaqModal() {
+    if (!faqModal)
+        return;
+    faqModal.classList.remove('open');
+    setTimeout(() => { faqModal.hidden = true; }, 250);
+}
+faqToggle?.addEventListener('click', openFaqModal);
+faqClose?.addEventListener('click', closeFaqModal);
+faqBackdrop?.addEventListener('click', closeFaqModal);
 //# sourceMappingURL=script.js.map

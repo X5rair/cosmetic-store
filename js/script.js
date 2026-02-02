@@ -190,4 +190,25 @@ faqClose?.addEventListener('click', () => {
         faqToggle.setAttribute('aria-expanded', 'false');
     } // тоже самое только false xdd
 });
+let chatMessages = [];
+let isBotTyping = false;
+function addMessage(role, text) {
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    chatMessages.push({ role, text, time });
+}
+function renderMessages() {
+    if (!faqAnswer)
+        return;
+    const typingHtml = isBotTyping ? `<div class="chat-msg chat-msg--bot"><div class="chat-bubble">Typing...</div></div>` : ''; //при isBotTyping = true будет рисоваться загрузка сообщений (чет намутил мутку тут ваще) 
+    const messageHtml = chatMessages.map((msg) => {
+        return ` <div class="chat-msg chat-msg--${msg.role}">
+    <div class="chat-bubble">${msg.text}</div>
+    <div class="chat-time">${msg.time}</div>
+  </div>`;
+    }).join(''); //сообщения будут рисоваться пузырьками
+    faqAnswer.innerHTML = `<div class="chat-feed">${messageHtml}${typingHtml}</div>`;
+    const feed = faqAnswer?.querySelector('.chat-feed');
+    if (feed)
+        feed.scrollTop = feed.scrollHeight;
+}
 //# sourceMappingURL=script.js.map

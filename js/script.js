@@ -17,7 +17,8 @@ const cartList = document.getElementById('cartList');
 const allToCarrtButtons = document.querySelectorAll('.add-to-cart');
 const cartItems = [];
 function getActiveUsername() {
-    return localStorage.getItem('username');
+    // Use authenticated email as the primary user key.
+    return localStorage.getItem('active_user_email') || localStorage.getItem('username');
 }
 function getCartStorageKey() {
     const username = getActiveUsername();
@@ -296,6 +297,7 @@ loginForm?.addEventListener('submit', async (e) => {
         localStorage.setItem(nicknameKey, enteredNickname);
     }
     await saveLoginToSupabase(userEmail);
+    localStorage.setItem('active_user_email', userEmail.toLowerCase());
     if (loginBtn)
         loginBtn.hidden = true;
     if (userNameLabel) {
@@ -309,6 +311,7 @@ logOutBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
     await supabaseClient.auth.signOut();
+    localStorage.removeItem('active_user_email');
     logOutBtn.hidden = true;
     if (loginBtn)
         loginBtn.hidden = false;
@@ -333,6 +336,7 @@ logOutBtn.addEventListener('click', async (e) => {
     const userEmail = user?.email;
     if (!userEmail)
         return;
+    localStorage.setItem('active_user_email', userEmail.toLowerCase());
     const nicknameKey = `nickname_${userEmail.toLowerCase()}`;
     const storedNickname = localStorage.getItem(nicknameKey);
     if (loginBtn)

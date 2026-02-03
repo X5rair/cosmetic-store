@@ -37,7 +37,8 @@ interface CartItem {
 const cartItems: CartItem[] = [];
 
 function getActiveUsername() {
-  return localStorage.getItem('username');
+  // Use authenticated email as the primary user key.
+  return localStorage.getItem('active_user_email') || localStorage.getItem('username');
 }
 
 function getCartStorageKey() {
@@ -365,6 +366,7 @@ loginForm?.addEventListener('submit', async (e) => {
   }
 
   await saveLoginToSupabase(userEmail);
+  localStorage.setItem('active_user_email', userEmail.toLowerCase());
 
   if (loginBtn) loginBtn.hidden = true;
   if (userNameLabel) {
@@ -380,6 +382,7 @@ logOutBtn.addEventListener('click', async (e) => {
   e.stopImmediatePropagation();
 
   await supabaseClient.auth.signOut();
+  localStorage.removeItem('active_user_email');
 
   logOutBtn.hidden = true;
   if (loginBtn) loginBtn.hidden = false;
@@ -404,6 +407,7 @@ logOutBtn.addEventListener('click', async (e) => {
 
   const userEmail = user?.email;
   if (!userEmail) return;
+  localStorage.setItem('active_user_email', userEmail.toLowerCase());
   const nicknameKey = `nickname_${userEmail.toLowerCase()}`;
   const storedNickname = localStorage.getItem(nicknameKey);
 

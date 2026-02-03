@@ -1,3 +1,7 @@
+![screenshot](img/Screenshot 2026-02-03 at 2.02.53 pm.png)
+
+
+
 # Cosmetic Store 💄✨
 
 A clean, modern landing page for a cosmetic store with product cards and a mini cart. Built as a static site with HTML/CSS and a small JS cart interaction.

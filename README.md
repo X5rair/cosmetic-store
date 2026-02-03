@@ -1,4 +1,4 @@
-![screenshot](img/Screenshot 2026-02-03 at 2.02.53 pm.png)
+![screenshot](cosmetic-store/img/Screenshot 2026-02-03 at 2.02.53 pm.png)
 
 
 

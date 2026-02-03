@@ -173,14 +173,8 @@ loginForm?.addEventListener('submit', (e) => {
 
 const savedName = localStorage.getItem('username');
 if (savedName) {
-if (loginBtn) loginBtn.hidden = true;
-if (userNameLabel) {
-  userNameLabel.textContent = savedName;
-  userNameLabel.hidden = false;
-}
-logOutBtn.hidden = false;
-loadCartFromStorage();
-renderCart();
+  // Legacy local auth cache, no longer used with Supabase auth.
+  localStorage.removeItem('username');
 }
 
 logOutBtn.addEventListener('click', () => {
@@ -349,11 +343,32 @@ loginForm?.addEventListener('submit', async (e) => {
   }
 
   const userEmail = data.user?.email || email;
+  const enteredNickname = usernameInput?.value.trim() || '';
+  const nicknameKey = `nickname_${userEmail.toLowerCase()}`;
+  const storedNickname = localStorage.getItem(nicknameKey);
+
+  if (!enteredNickname) {
+    alert('Please enter nickname.');
+
+    return;
+  }
+
+  if (storedNickname && storedNickname !== enteredNickname) {
+    await supabaseClient.auth.signOut();
+    alert('This email is already linked to a different nickname.');
+
+    return;
+  }
+
+  if (!storedNickname) {
+    localStorage.setItem(nicknameKey, enteredNickname);
+  }
+
   await saveLoginToSupabase(userEmail);
 
   if (loginBtn) loginBtn.hidden = true;
   if (userNameLabel) {
-    userNameLabel.textContent = userEmail;
+    userNameLabel.textContent = storedNickname || enteredNickname;
     userNameLabel.hidden = false;
   }
   logOutBtn.hidden = false;
@@ -389,10 +404,12 @@ logOutBtn.addEventListener('click', async (e) => {
 
   const userEmail = user?.email;
   if (!userEmail) return;
+  const nicknameKey = `nickname_${userEmail.toLowerCase()}`;
+  const storedNickname = localStorage.getItem(nicknameKey);
 
   if (loginBtn) loginBtn.hidden = true;
   if (userNameLabel) {
-    userNameLabel.textContent = userEmail;
+    userNameLabel.textContent = storedNickname || userEmail;
     userNameLabel.hidden = false;
   }
   logOutBtn.hidden = false;

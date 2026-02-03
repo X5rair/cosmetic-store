@@ -315,6 +315,16 @@ faqBackdrop?.addEventListener('click', closeFaqModal);
 
 
 //бд supabase (юзал софт для подключения базы данных)
+async function saveLoginToSupabase(email: string): Promise<void> {
+  const { error } = await supabaseClient
+    .from('login_events')
+    .insert([{ email }]);
+
+  if (error) {
+    console.warn('Could not save login event:', error.message);
+  }
+}
+
 loginForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -330,13 +340,7 @@ loginForm?.addEventListener('submit', async (e) => {
     return;
   }
 
-  let { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    const signUp = await supabaseClient.auth.signUp({ email, password });
-    data = signUp.data;
-    error = signUp.error;
-  }
+  const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
   if (error) {
     alert(error.message);
@@ -345,6 +349,8 @@ loginForm?.addEventListener('submit', async (e) => {
   }
 
   const userEmail = data.user?.email || email;
+  await saveLoginToSupabase(userEmail);
+
   if (loginBtn) loginBtn.hidden = true;
   if (userNameLabel) {
     userNameLabel.textContent = userEmail;
@@ -393,8 +399,6 @@ logOutBtn.addEventListener('click', async (e) => {
 })();
 
 
-
-//бд supabase
 async function fillExistingCardsFromSupabase() {
   const { data, error } = await supabaseClient
     .from('products')

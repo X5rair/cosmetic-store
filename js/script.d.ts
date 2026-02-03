@@ -56,5 +56,6 @@ declare const faqModal: HTMLElement | null;
 declare const faqBackdrop: HTMLElement | null;
 declare function openFaqModal(): void;
 declare function closeFaqModal(): void;
+declare function saveLoginToSupabase(email: string): Promise<void>;
 declare function fillExistingCardsFromSupabase(): Promise<void>;
 //# sourceMappingURL=script.d.ts.map

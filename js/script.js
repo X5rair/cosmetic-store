@@ -262,6 +262,14 @@ faqToggle?.addEventListener('click', openFaqModal);
 faqClose?.addEventListener('click', closeFaqModal);
 faqBackdrop?.addEventListener('click', closeFaqModal);
 //бд supabase (юзал софт для подключения базы данных)
+async function saveLoginToSupabase(email) {
+    const { error } = await supabaseClient
+        .from('login_events')
+        .insert([{ email }]);
+    if (error) {
+        console.warn('Could not save login event:', error.message);
+    }
+}
 loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -273,17 +281,13 @@ loginForm?.addEventListener('submit', async (e) => {
         alert('Please enter email and password.');
         return;
     }
-    let { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-    if (error) {
-        const signUp = await supabaseClient.auth.signUp({ email, password });
-        data = signUp.data;
-        error = signUp.error;
-    }
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
     if (error) {
         alert(error.message);
         return;
     }
     const userEmail = data.user?.email || email;
+    await saveLoginToSupabase(userEmail);
     if (loginBtn)
         loginBtn.hidden = true;
     if (userNameLabel) {
@@ -329,7 +333,6 @@ logOutBtn.addEventListener('click', async (e) => {
     }
     logOutBtn.hidden = false;
 })();
-//бд supabase
 async function fillExistingCardsFromSupabase() {
     const { data, error } = await supabaseClient
         .from('products')

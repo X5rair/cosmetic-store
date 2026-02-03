@@ -1,3 +1,8 @@
+declare const supabase: any;
+declare const supabaseClient: any;
+declare const supabaseUrl = "https://hmygaehllnoxfupnqirf.supabase.co";
+declare const supabaseAnonKey = "sb_publishable_kYTEQRFERxlIwxh4g-e6EQ_TQdqiCD7";
+declare function testSupabaseConnection(): Promise<void>;
 declare const cartBtn: HTMLElement | null;
 declare const cartMenu: HTMLElement | null;
 declare const cartList: HTMLElement | null;
@@ -51,4 +56,5 @@ declare const faqModal: HTMLElement | null;
 declare const faqBackdrop: HTMLElement | null;
 declare function openFaqModal(): void;
 declare function closeFaqModal(): void;
+declare function fillExistingCardsFromSupabase(): Promise<void>;
 //# sourceMappingURL=script.d.ts.map

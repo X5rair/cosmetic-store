@@ -1,3 +1,28 @@
+declare const supabase: any;
+const supabaseClient = supabase.createClient('https://hmygaehllnoxfupnqirf.supabase.co', 'sb_publishable_kYTEQRFERxlIwxh4g-e6EQ_TQdqiCD7');
+
+
+
+const supabaseUrl = 'https://hmygaehllnoxfupnqirf.supabase.co';
+const supabaseAnonKey = 'sb_publishable_kYTEQRFERxlIwxh4g-e6EQ_TQdqiCD7';
+
+async function testSupabaseConnection() {
+  const { data, error } = await supabaseClient.from('products').select('*').limit(1);
+
+  if (error) {
+    console.error('Supabase connection failed:', error.message);
+
+    return;
+  }
+
+  console.log('Supabase connected successfully. Sample row:', data);
+}
+
+void testSupabaseConnection();
+
+
+
+
 const cartBtn = document.getElementById('cartBtn');
 const cartMenu = document.getElementById('cartMenu');
 const cartList = document.getElementById('cartList');
@@ -286,3 +311,121 @@ function closeFaqModal() {
 faqToggle?.addEventListener('click', openFaqModal);
 faqClose?.addEventListener('click', closeFaqModal);
 faqBackdrop?.addEventListener('click', closeFaqModal);
+
+
+
+//бд supabase (юзал софт для подключения базы данных)
+loginForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+
+  const emailInput = loginForm.querySelector('input[type="email"]') as HTMLInputElement | null;
+  const passwordInput = loginForm.querySelector('input[type="password"]') as HTMLInputElement | null;
+  const email = emailInput?.value.trim() || '';
+  const password = passwordInput?.value || '';
+
+  if (!email || !password) {
+    alert('Please enter email and password.');
+
+    return;
+  }
+
+  let { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    const signUp = await supabaseClient.auth.signUp({ email, password });
+    data = signUp.data;
+    error = signUp.error;
+  }
+
+  if (error) {
+    alert(error.message);
+
+    return;
+  }
+
+  const userEmail = data.user?.email || email;
+  if (loginBtn) loginBtn.hidden = true;
+  if (userNameLabel) {
+    userNameLabel.textContent = userEmail;
+    userNameLabel.hidden = false;
+  }
+  logOutBtn.hidden = false;
+  closeLoginModal();
+}, true);
+
+logOutBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+
+  await supabaseClient.auth.signOut();
+
+  logOutBtn.hidden = true;
+  if (loginBtn) loginBtn.hidden = false;
+  if (userNameLabel) {
+    userNameLabel.textContent = '';
+    userNameLabel.hidden = true;
+  }
+}, true);
+
+(async () => {
+  let user: any = null;
+
+  if (typeof supabaseClient.auth.getUser === 'function') {
+    const { data } = await supabaseClient.auth.getUser();
+    user = data?.user ?? null;
+  } else if (typeof supabaseClient.auth.getSession === 'function') {
+    const { data } = await supabaseClient.auth.getSession();
+    user = data?.session?.user ?? null;
+  } else if (typeof supabaseClient.auth.user === 'function') {
+    user = supabaseClient.auth.user();
+  }
+
+  const userEmail = user?.email;
+  if (!userEmail) return;
+
+  if (loginBtn) loginBtn.hidden = true;
+  if (userNameLabel) {
+    userNameLabel.textContent = userEmail;
+    userNameLabel.hidden = false;
+  }
+  logOutBtn.hidden = false;
+})();
+
+
+
+//бд supabase
+async function fillExistingCardsFromSupabase() {
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('name, price, image_url')
+    .order('id', { ascending: true })
+    .limit(2);
+
+  if (error) {
+    console.error('Products load error:', error.message);
+    return;
+  }
+
+  if (!data || data.length === 0) return;
+
+  const cards = document.querySelectorAll<HTMLElement>('section.two-columns#products .column');
+
+  data.forEach((p: any, i: number) => {
+    const card = cards[i];
+    if (!card) return;
+
+    const title = card.querySelector('h3');
+    const price = card.querySelector<HTMLElement>('.price');
+    const img = card.querySelector<HTMLImageElement>('img');
+
+    if (title && p.name) title.textContent = p.name;
+    if (price && p.price !== undefined) {
+      price.dataset.price = String(p.price);
+      price.textContent = `$${Number(p.price).toFixed(2)}`;
+    }
+    if (img && p.image_url) img.src = p.image_url;
+  });
+}
+
+void fillExistingCardsFromSupabase();
